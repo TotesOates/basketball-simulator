@@ -1,2 +1,11 @@
-<GameResults @games=gameSimulator.games />
-{{!-- <LeagueTable @teams=this.gameSimulator.teams /> --}}
+<div class="flex">
+  <div class="flex-1 h-screen p-2 max-w-md">
+    <GameResults @games={{this.gameSimulator.games}} />
+  </div>
+
+  <div class="flex-1 h-screen p-2">
+    <LeagueTable @games={{this.gameSimulator.games}} @teams={{this.gameSimulator.teams}} />
+  </div>
+
+
+</div>
