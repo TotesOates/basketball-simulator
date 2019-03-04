@@ -1,0 +1,12 @@
+Games played: {{@games.length}}
+
+{{#each (take 25 (reverse @games)) as |game|}}
+
+      {{game.homeTeam.name}}
+
+      {{game.homeGoals}}
+
+      {{game.awayGoals}}
+
+      {{game.awayTeam.name}}
+{{/each}}

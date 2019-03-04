@@ -1,4 +1,2 @@
-{{#each this.gameSimulator.teams as |team|}}
-  <h1>{{team.id}}</h1>
-  <h2>{{team.name}}</h2>
-{{/each}}
+<GameResults @games=gameSimulator.games />
+{{!-- <LeagueTable @teams=this.gameSimulator.teams /> --}}

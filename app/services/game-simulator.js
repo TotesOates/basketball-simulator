@@ -1,22 +1,21 @@
 import Service from '@ember/service';
-import inject from '@ember/service';
+import { inject} from '@ember/service';
 import { later } from '@ember/runloop';
-import { shuffle } from 'ember-composable-helpers/helpers/shuffle';
 import { computed } from '@ember/object';
-import { SSL_OP_NETSCAPE_CA_DN_BUG } from 'constants';
-import { builtinModules } from 'module';
+import { shuffle } from 'ember-composable-helpers/helpers/shuffle';
 
-const DELAY_BETWEEN_GAMES = 100;
+
+const DELAY_BETWEEN_GAMES = 5000;
 
 export default Service.extend({
   store: inject(),
 
   teams: computed(function(){
-    return this.store.peakAll('team');
+    return this.store.peekAll('team');
   }),
 
   games: computed(function(){
-    return this.store.peakAll('game');
+    return this.store.peekAll('game');
   }),
 
   init() {
@@ -45,7 +44,32 @@ export default Service.extend({
     ];
 
     for (let i = 0; i < teamNames.length; i++){
-      this.store.createRecord('team', {id: i, name: teamNames[i]});
+      this.store.createRecord('team', {id: i, name: teamNames[i]})
     }
+  },
+
+  simulateGame(){
+    let teams = this.store.peekAll('team');
+    let shuffledTeams = shuffle(teams);
+
+    let homeTeam = shuffledTeams[0];
+    let awayTeam = shuffledTeams[1];
+
+    let homeGoals = this.randomScore(110);
+    let awayGoals = this.randomScore(105);
+
+    this.store.createRecord('game', {
+      homeTeam,
+      awayTeam,
+      homeGoals,
+      awayGoals,
+      playedOnDate: new Date()
+    });
+
+    later(this, this.simulateGame, DELAY_BETWEEN_GAMES);
+  },
+
+  randomScore(maxScore){
+    return Math.round((Math.random() * maxScore));
   }
 });
