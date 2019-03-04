@@ -17,7 +17,7 @@ export default DS.Model.extend({
   awayGamesLost: filterBy('awayGames', 'isHomeWin'),
   gamesLost: union('homeGamesLost', 'awayGamesLost'),
 
-  gameDrawn: filterBy('games', 'isDraw'),
+  gamesDrawn: filterBy('games', 'isDraw'),
 
   homeGoalsScoredArray: mapBy('homeGames', 'homeGoals'),
   homeGoalsScored: sum('homeGoalsScoredArray'),

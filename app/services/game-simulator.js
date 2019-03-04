@@ -55,8 +55,8 @@ export default Service.extend({
     let homeTeam = shuffledTeams[0];
     let awayTeam = shuffledTeams[1];
 
-    let homeGoals = this.randomScore(110);
-    let awayGoals = this.randomScore(105);
+    let homeGoals = this.randomScore(80);
+    let awayGoals = this.randomScore(70);
 
     this.store.createRecord('game', {
       homeTeam,
@@ -69,7 +69,7 @@ export default Service.extend({
     later(this, this.simulateGame, DELAY_BETWEEN_GAMES);
   },
 
-  randomScore(maxScore){
-    return Math.round((Math.random() * maxScore));
+  randomScore(scoreMultiplier){
+    return Math.round((Math.random() * scoreMultiplier + 60));
   }
 });
