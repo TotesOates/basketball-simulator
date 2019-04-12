@@ -1,7 +1,5 @@
 # basketball-simulator
-
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Simulates NBA teams and a full season of games
 
 ## Prerequisites
 
