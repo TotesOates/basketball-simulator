@@ -1,5 +1,5 @@
 # basketball-simulator
-Simulates NBA teams and a full season of games
+Simulates NBA teams and a full season of games with the use of mainly computed properties.
 
 ## Prerequisites
 
